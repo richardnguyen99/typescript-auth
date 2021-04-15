@@ -8,7 +8,9 @@ A full-stack Typescript starter pack for developing an MVC Express application
 - [ ] Support SCSS/CSS
 - [X] Server poswered by ExpressJS
 - [ ] MVC pattern
-- [ ] Project bundle and configurations (Babel/Webpack/EditorConfig)
+- [ ] Support static assets
+- [ ] SEO
+- [X] Project bundle and configurations (Babel/Webpack/EditorConfig) (still need more updates)
 - [ ] Logger
 - [ ] Type-checking and linting
 - [ ] Testing
