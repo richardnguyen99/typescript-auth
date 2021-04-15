@@ -2,11 +2,13 @@ const path = require("path");
 const webpack = require("webpack");
 const webpackNodeExternals = require("webpack-node-externals");
 
+require("dotenv").config();
+
 const isDev = process.env.NODE_ENV === "development"
 
 module.exports = {
   target: "node",
-  mode: isDev ? "developlemtn": "production",
+  mode: isDev ? "development": "production",
   devtool: "source-map",
   externals: [webpackNodeExternals()],
   entry: [path.resolve(__dirname, "src", "index.ts")],
@@ -17,7 +19,7 @@ module.exports = {
     publicPath: "/",
   },
   resolve: {
-    extensions: [".js", ".ts"],
+    extensions: [".js", ".ts", ".tsx", ".json"],
   },
   optimization: {
     splitChunks: {
