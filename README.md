@@ -11,6 +11,8 @@ A full-stack Typescript starter pack for developing an MVC Express application
 - [ ] MVC pattern
 - [ ] Support static assets
 - [ ] SEO
+- [ ] Forms
+- [X] Routers
 - [X] Project bundle and configurations (Babel/Webpack/EditorConfig) (still need more updates)
 - [ ] Logger
 - [ ] Type-checking and linting
