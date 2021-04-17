@@ -10,6 +10,10 @@ A full-stack Typescript starter pack for developing an MVC Express application
 - [X] Server poswered by ExpressJS
 - [ ] MVC pattern
 - [ ] Support static assets
+- [ ] Views
+- [ ] Fonts
+- [ ] Images
+- [ ] Theme
 - [ ] SEO
 - [ ] Forms
 - [X] Routers
@@ -18,7 +22,7 @@ A full-stack Typescript starter pack for developing an MVC Express application
 - [ ] Type-checking and linting
 - [ ] Testing
 - [ ] CI/CD
-- [ ] Deployment
+- [ ] Deployment (production ready)
 - [ ] Docker (Containerization)
 
 ## Prerequisites
