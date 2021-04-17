@@ -11,7 +11,7 @@ module.exports = {
   mode: isDev ? "development": "production",
   devtool: "source-map",
   externals: [webpackNodeExternals()],
-  entry: [path.resolve(__dirname, "src", "index.ts")],
+  entry: [path.resolve(__dirname, "src", "server.ts")],
   output: {
     filename: "[name].bundle.js",
     chunkFilename: "[name].chunk.js",

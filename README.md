@@ -6,6 +6,7 @@ A full-stack Typescript starter pack for developing an MVC Express application
 
 - [X] Full implemntation and support for Typescript
 - [ ] Support SCSS/CSS
+- [X] Template engine with EJS
 - [X] Server poswered by ExpressJS
 - [ ] MVC pattern
 - [ ] Support static assets
@@ -22,7 +23,7 @@ A full-stack Typescript starter pack for developing an MVC Express application
 
 This starter is used to save my time for configuring the setup over and over again so this is my personal preference. If you want to modify, continue reading to see what to change up to your desires.
 
-This starter pack uses three core softwares below: 
+This starter pack uses three core softwares below:
 
 1. Install [NodeJS](https://nodejs.org/en/).
 
@@ -32,7 +33,7 @@ This starter pack uses three core softwares below:
 
 ## Dependencies
 
-List of packages that power this starter pack. Please read them carefully since deleting one can lead others to malfunctionalities.
+List of core packages that power this starter pack. Please read them carefully since deleting one can lead others to malfunctionalities.
 
 `normal`: Dependencies that actually runs
 `dev`: Dependencies that serve the developlemnt process only
@@ -40,7 +41,12 @@ List of packages that power this starter pack. Please read them carefully since 
 | Package| Type | Description |
 | --- | --- | --- |
 | `express` | normal | NodeJS server  |
-| `@types` | dev | Type-definitions for `express` |
+| `ejs` | normal | Template engine for Express |
+| `webpack` | dev | Bundler for Typescript |
+| `dotenv` | normal | Environment configuration loader |
+| `nodemon` | dev | Node monitor |
+| `@babel/core` | dev | Transpile typescript to ES5 |
+| `@types/...` | dev | Type definition for all packages  |
 
 ## Scripts
 
@@ -48,7 +54,9 @@ List of scripts that help developing and running the pack. There are many script
 
 | Script | Full command | Description |
 | --- | --- | --- |
-| `start` | `tsc` | Compile Typescript with TS compiler |
+| `watch:server` | `nodemon dist/main.bundle.js` | Listen to changes in the bundled file, which is the main file for running |
+| `watch:compiler` | `webpack --watch` | Listen to changes in `src/index.ts`, which will compile to `dist/main.bundle.js` |
+| `watch` | `concurrently -k -p "[{name}]" -n "Webpack,Server" -c "cyan.bold, green.bold" "yarn run watch:compiler" "yarn run watch:server"` | Combine all `watch:` commands |
 
 ## Deployment (in progress)
 
