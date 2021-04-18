@@ -26,7 +26,6 @@
   "author": "richardnguyen99 <richard.ng0616@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.6.0",
     "compression": "^1.7.4",
