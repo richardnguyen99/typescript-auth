@@ -3,5 +3,14 @@
     "editor.wordWrapColumn": 80,
     "editor.wordWrap": "wordWrapColumn",
     "editor.quickSuggestions": false
+  },
+  "[html]": {
+    "editor.wordWrapColumn": 80,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.quickSuggestions": false,
+    "editor.suggest.insertMode": "replace",
+    "gitlens.codeLens.scopes": [
+      "document"
+    ]
   }
 }
