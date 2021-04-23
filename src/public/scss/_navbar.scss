@@ -1,5 +1,46 @@
-.navbar-dark .navbar-toggler {
-  border: none;
+.navbar-dark {
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-nav {
+    .nav-link.active {
+      border-bottom: 5px solid $white;
+    }
+  }
+}
+
+.navbar-collapse {
+  @include media-breakpoint-down(md) {
+    position: absolute;
+    top: 100%;
+    left: auto;
+    right: 0;
+    margin-right: 1rem;
+    min-width: 150px;
+    background-color: $dark;
+    border-radius: 5px;
+    overflow-x: hidden;
+    z-index: 100;
+
+    .navbar-nav {
+      line-height: 0;
+
+      .nav-item {
+        border-radius: 5px;
+        margin: 0.5rem;
+        margin-bottom: 0;
+
+        &:hover {
+          background-color: $gray-600;
+        }
+      }
+
+      .nav-link.active {
+        border: none;
+      }
+    }
+  }
 }
 
 .navbar-light .navbar-toggler {
