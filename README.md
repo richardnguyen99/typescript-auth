@@ -12,15 +12,15 @@ A full-stack Typescript starter pack for developing an MVC Express application
 - [X] Support static assets
 - [X] Views
 - [X] Fonts
-- [ ] Images
-- [ ] Favicon
-- [ ] Theme
+- [X] Images
+- [X] Favicon
+- [X] Theme
 - [ ] SEO
-- [ ] Responsive
+- [X] Responsive
 - [ ] Forms
 - [X] Routers
 - [X] Project bundle and configurations (Babel/Webpack/EditorConfig) (still need more updates)
-- [ ] Logger
+- [X] Logger
 - [ ] Type-checking and linting
 - [ ] Testing
 - [ ] CI/CD
