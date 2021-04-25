@@ -24,5 +24,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", homeController.index);
+app.get("/about", homeController.about);
 
 export default app;

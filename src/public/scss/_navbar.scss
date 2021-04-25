@@ -10,6 +10,18 @@
   }
 }
 
+.navbar-light{
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-nav {
+    .nav-link.active {
+      border-bottom: 5px solid $black;
+    }
+  }
+}
+
 .navbar-collapse {
   @include media-breakpoint-down(md) {
     position: absolute;
