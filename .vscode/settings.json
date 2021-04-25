@@ -9,8 +9,6 @@
     "editor.wordWrap": "wordWrapColumn",
     "editor.quickSuggestions": false,
     "editor.suggest.insertMode": "replace",
-    "gitlens.codeLens.scopes": [
-      "document"
-    ]
+    "gitlens.codeLens.scopes": ["document"]
   }
 }

@@ -1,0 +1,6 @@
+{
+  "trailingComma": "es5",
+  "spaceWhite": 2,
+  "semi": true,
+  "singleQuote": false
+}

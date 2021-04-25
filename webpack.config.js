@@ -4,11 +4,11 @@ const webpackNodeExternals = require("webpack-node-externals");
 
 require("dotenv").config();
 
-const isDev = process.env.NODE_ENV === "development"
+const isDev = process.env.NODE_ENV === "development";
 
 module.exports = {
   target: "node",
-  mode: isDev ? "development": "production",
+  mode: isDev ? "development" : "production",
   devtool: "source-map",
   externals: [webpackNodeExternals()],
   entry: [path.resolve(__dirname, "src", "server.ts")],

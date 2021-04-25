@@ -4,24 +4,25 @@ A full-stack Typescript starter pack for developing an MVC Express application
 
 ## Features
 
-- [X] Full implemntation and support for Typescript
-- [X] Support SCSS/CSS
-- [X] Template engine with EJS
-- [X] Server poswered by ExpressJS
-- [X] MVC pattern
-- [X] Support static assets
-- [X] Views
-- [X] Fonts
-- [X] Images
-- [X] Favicon
-- [X] Theme
+- [x] Full implemntation and support for Typescript
+- [x] Support SCSS/CSS
+- [x] Template engine with EJS
+- [x] Server poswered by ExpressJS
+- [x] MVC pattern
+- [x] Support static assets
+- [x] Views
+- [x] Fonts
+- [x] Images
+- [x] Favicon
+- [x] Theme
 - [ ] SEO
-- [X] Responsive
+- [x] Responsive
 - [ ] Forms
-- [X] Routers
-- [X] Project bundle and configurations (Babel/Webpack/EditorConfig) (still need more updates)
-- [X] Logger
-- [ ] Type-checking and linting
+- [x] Routers
+- [x] Project bundle and configurations (Babel/Webpack/EditorConfig) (still need more updates)
+- [x] Logger
+- [x] Type-checking and linting
+- [x] Pre-commit
 - [ ] Testing
 - [ ] CI/CD
 - [ ] Deployment (production ready)
@@ -46,25 +47,25 @@ List of core packages that power this starter pack. Please read them carefully s
 `normal`: Dependencies that actually runs
 `dev`: Dependencies that serve the developlemnt process only
 
-| Package| Type | Description |
-| --- | --- | --- |
-| `express` | normal | NodeJS server  |
-| `ejs` | normal | Template engine for Express |
-| `webpack` | dev | Bundler for Typescript |
-| `dotenv` | normal | Environment configuration loader |
-| `nodemon` | dev | Node monitor |
-| `@babel/core` | dev | Transpile typescript to ES5 |
-| `@types/...` | dev | Type definition for all packages  |
+| Package       | Type   | Description                      |
+| ------------- | ------ | -------------------------------- |
+| `express`     | normal | NodeJS server                    |
+| `ejs`         | normal | Template engine for Express      |
+| `webpack`     | dev    | Bundler for Typescript           |
+| `dotenv`      | normal | Environment configuration loader |
+| `nodemon`     | dev    | Node monitor                     |
+| `@babel/core` | dev    | Transpile typescript to ES5      |
+| `@types/...`  | dev    | Type definition for all packages |
 
 ## Scripts
 
 List of scripts that help developing and running the pack. There are many scripts and some of them have similarities so make sure you check them.
 
-| Script | Full command | Description |
-| --- | --- | --- |
-| `watch:server` | `nodemon dist/main.bundle.js` | Listen to changes in the bundled file, which is the main file for running |
-| `watch:compiler` | `webpack --watch` | Listen to changes in `src/index.ts`, which will compile to `dist/main.bundle.js` |
-| `watch` | `concurrently -k -p "[{name}]" -n "Webpack,Server" -c "cyan.bold, green.bold" "yarn run watch:compiler" "yarn run watch:server"` | Combine all `watch:` commands |
+| Script           | Full command                                                                                                                     | Description                                                                      |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `watch:server`   | `nodemon dist/main.bundle.js`                                                                                                    | Listen to changes in the bundled file, which is the main file for running        |
+| `watch:compiler` | `webpack --watch`                                                                                                                | Listen to changes in `src/index.ts`, which will compile to `dist/main.bundle.js` |
+| `watch`          | `concurrently -k -p "[{name}]" -n "Webpack,Server" -c "cyan.bold, green.bold" "yarn run watch:compiler" "yarn run watch:server"` | Combine all `watch:` commands                                                    |
 
 ## Deployment (in progress)
 
