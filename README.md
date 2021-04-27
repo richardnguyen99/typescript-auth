@@ -15,7 +15,7 @@ A full-stack Typescript starter pack for developing an MVC Express application
 - [x] Images
 - [x] Favicon
 - [x] Theme
-- [ ] SEO
+- [x] SEO
 - [x] Responsive
 - [ ] Forms
 - [x] Routers
@@ -23,7 +23,7 @@ A full-stack Typescript starter pack for developing an MVC Express application
 - [x] Logger
 - [x] Type-checking and linting
 - [x] Pre-commit
-- [ ] Testing
+- [X] Testing
 - [ ] CI/CD
 - [ ] Deployment (production ready)
 - [ ] Docker (Containerization)
