@@ -1,7 +1,7 @@
 # mvc-express-ts-starter-pack
 
 [![Dependency Status](https://img.shields.io/david/richardnguyen99/mvc-express-ts-starter-pack)](https://img.shields.io/david/richardnguyen99/mvc-express-ts-starter-pack)
-[![Build status](https://travis-ci.org/richardnguyen99/mvc-express-ts-starter-pack.svg?branch=main)](https://travis-ci.org/richardnguyen99/mvc-express-ts-starter-pack)
+[![Build status](https://travis-ci.com/richardnguyen99/mvc-express-ts-starter-pack.svg?branch=main)](https://travis-ci.com/richardnguyen99/mvc-express-ts-starter-pack)
 
 A full-stack Typescript starter pack for getting shit done!!
 
