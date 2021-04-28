@@ -11,6 +11,7 @@ import bodyParser from "body-parser";
 import compression from "compression";
 
 import * as homeController from "./controllers/home";
+import * as userController from "./controllers/user";
 import config from "./config";
 
 // Create app server with Express
@@ -31,7 +32,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+/** General pages */
 app.get("/", homeController.index);
 app.get("/about", homeController.about);
+
+/** User pages */
+app.get("/login", userController.getLogin);
+app.post("/login", userController.postLogin);
 
 export default app;

@@ -1,19 +1,28 @@
 /**
- * Home page
+ * Main controller for general pages
  *
- * @route GET /
  * @author Richard Nguyen <richard.ng0616@gmail.com>
  */
 import { Request, Response } from "express";
 
-export const index = (req: Request, res: Response) => {
+/**
+ * Home page
+ *
+ * @route GET /
+ */
+export const index = (req: Request, res: Response): void => {
   res.render("home", {
     pageName: "home",
     title: "Home page",
   });
 };
 
-export const about = (req: Request, res: Response) => {
+/**
+ * About page
+ *
+ * @route GET /about
+ */
+export const about = (req: Request, res: Response): void => {
   res.render("about", {
     pageName: "about",
     title: "About page",

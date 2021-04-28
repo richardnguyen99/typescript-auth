@@ -32,16 +32,6 @@ module.exports = {
           loader: "babel-loader",
         },
       },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
-      }
     ],
   },
-  plugins: [!isDev && new MiniCssExtractPlugin()]
 };
