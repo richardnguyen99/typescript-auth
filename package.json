@@ -41,7 +41,6 @@
   "repository": "git@github.com:richardnguyen99/mvc-express-ts-starter-pack.git",
   "author": "richardnguyen99 <richard.ng0616@gmail.com>",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "@types/jest": "^26.0.23",
     "body-parser": "^1.19.0",

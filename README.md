@@ -1,6 +1,8 @@
 # mvc-express-ts-starter-pack
 
-A full-stack Typescript starter pack for developing an MVC Express application
+[![Dependency Status](https://img.shields.io/david/richardnguyen99/mvc-express-ts-starter-pack)](https://img.shields.io/david/richardnguyen99/mvc-express-ts-starter-pack)
+
+A full-stack Typescript starter pack for getting shit done!!
 
 ## Features
 
