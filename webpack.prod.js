@@ -1,16 +1,14 @@
 const path = require("path");
 const webpack = require("webpack");
 const webpackNodeExternals = require("webpack-node-externals");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 require("dotenv").config();
 
 const isDev = process.env.NODE_ENV === "development";
 
 module.exports = {
+  mode: "production",
   target: "node",
-  mode: isDev ? "development" : "production",
-  devtool: "source-map",
   externals: [webpackNodeExternals()],
   entry: [path.resolve(__dirname, "src", "server.ts")],
   output: {
@@ -20,7 +18,7 @@ module.exports = {
     publicPath: "/",
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx", ".json"],
+    extensions: [".js", ".ts", ".tsx", ".json", ".scss"],
   },
   module: {
     rules: [
@@ -32,16 +30,6 @@ module.exports = {
           loader: "babel-loader",
         },
       },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
-      }
     ],
   },
-  plugins: [!isDev && new MiniCssExtractPlugin()]
 };

@@ -25,7 +25,7 @@ A full-stack Typescript starter pack for developing an MVC Express application
 - [x] Pre-commit
 - [X] Testing
 - [ ] CI/CD
-- [ ] Deployment (production ready)
+- [X] Deployment (production ready)
 - [ ] Docker (Containerization)
 
 ## Prerequisites
