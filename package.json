@@ -66,6 +66,7 @@
     "watch:compiler": "webpack --progress --watch --config webpack/webpack.config.js",
     "watch:sass": "sass --watch src/public/scss/main.scss dist/public/css/main.css",
     "watch:view": "tsc --watch --baseUrl ./src/public/ts --outDir ./dist/public/js",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"Webpack,Server,SCSS,View\" -c \"cyan.bold,green.bold,blue.bold,red.bold\" \"yarn run watch:compiler\" \"yarn run watch:server\" \"yarn run watch:sass\" \"yarn run watch:view\""
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Webpack,Server,SCSS,View\" -c \"cyan.bold,green.bold,blue.bold,red.bold\" \"yarn run watch:compiler\" \"yarn run watch:server\" \"yarn run watch:sass\" \"yarn run watch:view\"",
+    "start": "node dist/main.js"
   }
 }
