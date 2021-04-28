@@ -5,12 +5,17 @@
 
 A full-stack Typescript starter pack for getting shit done!!
 
+*Check it out [Typescript MVC starter pack](https://mvc-starter-pack.herokuapp.com/)*
+
+For more usage of this starter pack, check these projects below:
+- Authentication web server: [Github](https://github.com/richardnguyen99/typescript-auth)
+
 ## Features
 
 - [x] Full implemntation and support for Typescript
 - [x] Support SCSS/CSS
 - [x] Template engine with EJS
-- [x] Server poswered by ExpressJS
+- [x] Server powered by ExpressJS
 - [x] MVC pattern
 - [x] Support static assets
 - [x] Views
@@ -30,6 +35,7 @@ A full-stack Typescript starter pack for getting shit done!!
 - [X] CI/CD
 - [X] Deployment (production ready)
 - [ ] Docker (Containerization)
+- [ ] Full documentation on development and customizing.
 
 ## Prerequisites
 
