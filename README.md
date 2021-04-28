@@ -1,6 +1,7 @@
 # mvc-express-ts-starter-pack
 
 [![Dependency Status](https://img.shields.io/david/richardnguyen99/mvc-express-ts-starter-pack)](https://img.shields.io/david/richardnguyen99/mvc-express-ts-starter-pack)
+[![Build status](https://travis-ci.org/richardnguyen99/mvc-express-ts-starter-pack.svg?branch=main)](https://travis-ci.org/richardnguyen99/mvc-express-ts-starter-pack)
 
 A full-stack Typescript starter pack for getting shit done!!
 
@@ -26,7 +27,7 @@ A full-stack Typescript starter pack for getting shit done!!
 - [x] Type-checking and linting
 - [x] Pre-commit
 - [X] Testing
-- [ ] CI/CD
+- [X] CI/CD
 - [X] Deployment (production ready)
 - [ ] Docker (Containerization)
 
