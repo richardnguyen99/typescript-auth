@@ -10,10 +10,10 @@ import { Request, Response } from "express";
  *
  * @route GET /login
  */
-export const getLogin = (req: Request, res: Response): void => {
-  res.render("login", {
-    title: "Login",
-    pageName: "login",
+export const getSignin = (req: Request, res: Response): void => {
+  res.render("signin", {
+    title: "Sign in",
+    pageName: "signin",
   });
 };
 
@@ -22,6 +22,6 @@ export const getLogin = (req: Request, res: Response): void => {
  *
  * @route POST /login
  */
-export const postLogin = async (req: Request, res: Response): Promise<void> => {
-  res.send({ msg: "Logged in "});
+export const postSignin = async (req: Request, res: Response): Promise<void> => {
+  res.send({ msg: "Signed in"});
 };

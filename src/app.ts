@@ -20,7 +20,7 @@ const app: Express = express();
 // Express configuration
 app.set("port", process.env.PORT || 3000);
 app.set("env", process.env.NODE_ENV);
-app.set("views", path.join(__dirname, "../views"));
+app.set("views", process.env.NODE_ENV === "production" ? path.join(__dirname, "public", "views") : path.join(__dirname, "../views"));
 app.set("view engine", "ejs");
 app.use(compression());
 app.use(
@@ -37,7 +37,7 @@ app.get("/", homeController.index);
 app.get("/about", homeController.about);
 
 /** User pages */
-app.get("/login", userController.getLogin);
-app.post("/login", userController.postLogin);
+app.get("/signin", userController.getSignin);
+app.post("/signin", userController.postSignin);
 
 export default app;

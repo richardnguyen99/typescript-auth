@@ -15,6 +15,7 @@
     "@typescript-eslint/parser": "^4.22.0",
     "babel-loader": "^8.2.2",
     "concurrently": "^6.0.2",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
     "eslint": "^7.25.0",
     "html-webpack-plugin": "^5.3.1",
@@ -24,6 +25,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
+    "raw-loader": "^4.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.32.10",
     "sass-loader": "^11.0.1",
@@ -34,6 +36,7 @@
     "wait-on": "^5.3.0",
     "webpack": "^5.32.0",
     "webpack-cli": "^4.6.0",
+    "webpack-manifest-plugin": "^3.1.1",
     "webpack-node-externals": "^2.5.2"
   },
   "name": "mvc-express-ts-starter-pack",
@@ -62,13 +65,15 @@
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "postinstall": "husky install",
-    "build:sass": "webpack --config webpack.web.js && node scripts/copyStaticAssets.js",
+    "build:sass": "cross-env NODE_ENV=production webpack --config webpack.web.js && cross-env NODE_ENV=production node scripts/copyStaticAssets.js",
     "build": " yarn clean && yarn build:sass && webpack --config webpack.prod.js",
     "watch:server": "wait-on dist/main.js && node scripts/copyStaticAssets.js && nodemon dist/main.js",
+    "watch:client": "webpack --mode development --watch --config webpack.web.js",
     "watch:compiler": "webpack --watch",
     "watch:sass": "sass --watch src/public/scss/main.scss dist/public/css/main.css",
     "watch:view": "tsc --watch --baseUrl ./src/public/ts --outDir ./dist/public/js",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"Webpack,Server,SCSS,View\" -c \"cyan.bold,green.bold,blue.bold,red.bold\" \"yarn run watch:compiler\" \"yarn run watch:server\" \"yarn run watch:sass\" \"yarn run watch:view\"",
+    "watch:legacy": "concurrently -k -p \"[{name}]\" -n \"Webpack,Server,SCSS,View\" -c \"cyan.bold,green.bold,blue.bold,red.bold\" \"yarn run watch:compiler\" \"yarn run watch:server\" \"yarn run watch:sass\" \"yarn run watch:view\"",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Client,Webpack,Server\" -c \"cyan.bold,green.bold,blue.bold\" \"yarn run watch:client\" \"yarn run watch:compiler\" \"yarn run watch:server\"",
     "start": "node dist/main.js"
   }
 }

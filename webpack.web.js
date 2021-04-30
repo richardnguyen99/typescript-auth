@@ -1,20 +1,30 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 
 require("dotenv").config();
 
+const isProd = process.env.NODE_ENV === "production";
+
 module.exports = {
-  mode: "production",
   target: "web",
-  entry: [path.resolve(__dirname, "src", "public", "ts", "index.ts"), path.resolve(__dirname, "src", "public", "scss", "main.scss")],
+  entry: {
+    index: path.resolve(__dirname, "src", "public", "ts", "index.ts"),
+    signin: path.resolve(__dirname, "src", "public", "ts", "signin.ts"),
+    main: path.resolve(__dirname, "src", "public", "scss", "main.scss")
+  },
   output: {
-    filename: "js/index.js",
+    filename: isProd ? "js/[name].[fullhash].js" : "js/[name].js" ,
     chunkFilename: "js/[name].chunk.js",
     path: path.resolve(__dirname, "dist", "public"),
     publicPath: "/",
   },
   resolve: {
     extensions: [".js", ".ts", ".tsx", ".json", ".scss"],
+  },
+  optimization: {
+    usedExports: true
   },
   module: {
     rules: [
@@ -35,11 +45,48 @@ module.exports = {
           'postcss-loader',
           'sass-loader',
         ],
+      },
+      {
+        test: /\.ejs$/i,
+        use: {
+          loader: "raw-loader"
+        }
       }
     ],
   },
-  plugins: [new MiniCssExtractPlugin({
-    filename: "css/[name].css",
-    chunkFilename: 'css/[id].css',
-  })]
+  plugins: [
+    new WebpackManifestPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+      chunkFilename: 'css/[id].css',
+    }),
+    new HtmlWebpackPlugin({
+      filename: "views/home.ejs",
+      template: "views/home.ejs",
+      minify: {
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      },
+      chunks: ["index"]
+    }),
+    new HtmlWebpackPlugin({
+      filename: "views/signin.ejs",
+      template: "views/signin.ejs",
+      minify: {
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      },
+      chunks: ["index", "signin"]
+    })
+  ]
 };
