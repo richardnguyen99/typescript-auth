@@ -57,6 +57,7 @@
     "express": "^4.17.1",
     "jest": "^26.6.3",
     "morgan": "^1.10.0",
+    "node-postgres": "^0.6.2",
     "ts-jest": "^26.5.5",
     "winston": "^3.3.3"
   },
@@ -65,7 +66,7 @@
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "postinstall": "husky install",
-    "build:sass": "cross-env NODE_ENV=production webpack --config webpack.web.js && cross-env NODE_ENV=production node scripts/copyStaticAssets.js",
+    "build:sass": "webpack --config webpack.web.js && cross-env NODE_ENV=production node scripts/copyStaticAssets.js",
     "build": " yarn clean && yarn build:sass && webpack --config webpack.prod.js",
     "watch:server": "wait-on dist/main.js && node scripts/copyStaticAssets.js && nodemon dist/main.js",
     "watch:client": "webpack --mode development --watch --config webpack.web.js",

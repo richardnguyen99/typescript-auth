@@ -8,6 +8,7 @@ require("dotenv").config();
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
+  mode: isProd ? "production" : "development",
   target: "web",
   entry: {
     index: path.resolve(__dirname, "src", "public", "ts", "index.ts"),
