@@ -9,10 +9,13 @@ import express, { Express } from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import compression from "compression";
+import dotenv from "dotenv";
 
 import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user";
 import config from "./config";
+
+dotenv.config();
 
 // Create app server with Express
 const app: Express = express();
@@ -20,7 +23,7 @@ const app: Express = express();
 // Express configuration
 app.set("port", process.env.PORT || 3000);
 app.set("env", process.env.NODE_ENV);
-app.set("views", process.env.NODE_ENV === "production" ? path.join(__dirname, "public", "views") : path.join(__dirname, "../views"));
+app.set("views", path.join(__dirname, "../dist", "public", "views"));
 app.set("view engine", "ejs");
 app.use(compression());
 app.use(
@@ -39,5 +42,6 @@ app.get("/about", homeController.about);
 /** User pages */
 app.get("/signin", userController.getSignin);
 app.post("/signin", userController.postSignin);
+app.get("/user/:username", userController.getUser);
 
 export default app;

@@ -3,12 +3,11 @@ const shelljs = require("shelljs");
 
 shelljs.cp("-R", "src/public/ts/lib", "dist/public/js/");
 shelljs.cp("-R", "src/public/assets", "dist/public/");
+shelljs.cp("-R", "views/components", "dist/public/views/");
 // shelljs.cp("-R", "src/public/fonts/", "dist/public/");
 // shelljs.cp("-R", "src/public/webfonts/", "dist/public/");
 
 if (process.env.NODE_ENV === "production") {
-  shelljs.cp("-R", "views/components", "dist/public/views/");
-
   const manifest = require("../dist/public/manifest.json");
   Object.keys(manifest).forEach((key) => {
     if (/\.js$/.test(key)) {
