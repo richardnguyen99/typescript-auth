@@ -8,10 +8,12 @@ require("dotenv").config();
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
+  mode: isProd ? "production" : "development",
   target: "web",
   entry: {
     index: path.resolve(__dirname, "src", "public", "ts", "index.ts"),
     signin: path.resolve(__dirname, "src", "public", "ts", "signin.ts"),
+    signup: path.resolve(__dirname, "src", "public", "ts", "signup.ts"),
     main: path.resolve(__dirname, "src", "public", "scss", "main.scss")
   },
   output: {
@@ -73,6 +75,20 @@ module.exports = {
         useShortDoctype: true
       },
       chunks: ["index"]
+    }),
+    new HtmlWebpackPlugin({
+      filename: "views/signup.ejs",
+      template: "views/signup.ejs",
+      minify: {
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      },
+      chunks: ["index", "signup"]
     }),
     new HtmlWebpackPlugin({
       filename: "views/signin.ejs",

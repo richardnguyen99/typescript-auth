@@ -42,6 +42,8 @@ app.get("/about", homeController.about);
 /** User pages */
 app.get("/signin", userController.getSignin);
 app.post("/signin", userController.postSignin);
+app.get("/signup", userController.getSignup);
+app.post("/signup", userController.postSignup);
 app.get("/user/:username", userController.getUser);
 
 export default app;
