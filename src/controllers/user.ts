@@ -8,6 +8,8 @@ import bcrypt from "bcrypt";
 
 import config from "../config";
 
+
+
 /**
  * Login page
  *
@@ -41,7 +43,7 @@ export const postSignin =(req: Request, res: Response): void => {
   const data = req.body.data;
   const postgres = config.postgres;
 
-  const query = "SELECT * FROM user_account WHERE email = $1";
+  const query = "SELECT * FROM users WHERE email = $1";
 
   postgres.pool.query(query, [data.email], (err, response) => {
     if (err)
@@ -65,9 +67,9 @@ export const postSignup = (req: Request, res: Response): void => {
   const data = req.body.data;
   const postgres = config.postgres;
 
-  const checkUserExistingQuery = "SELECT * FROM user_account WHERE email = $1 or username = $2";
+  const checkUserExistingQuery = "SELECT * FROM users WHERE email = $1 or username = $2";
   const createUserQuery = `
-    INSERT INTO user_account(
+    INSERT INTO users(
       username,
       email,
       password,
@@ -114,7 +116,7 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
   const params = req.params;
   const postgres = config.postgres;
 
-  const query = "SELECT * FROM user_account";
+  const query = "SELECT * FROM users";
 
   postgres.pool.query(query, (err, response) => {
     if (err) {
