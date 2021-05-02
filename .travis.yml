@@ -8,8 +8,10 @@ cache:
     directories:
         - node_modules
 
+
 install: yarn install --frozen-lockfile --ignore-scripts
 
 script:
+    - npm install -g node-gyp
     - yarn run build
     - yarn run test
