@@ -39,7 +39,7 @@ export const getSignup = (req: Request, res: Response): void => {
  *
  * @route POST /signin
  */
-export const postSignin =(req: Request, res: Response): void => {
+export const postSignin = (req: Request, res: Response): void => {
   const data = req.body.data;
   const postgres = config.postgres;
 
@@ -47,12 +47,16 @@ export const postSignin =(req: Request, res: Response): void => {
 
   postgres.pool.query(query, [data.email], (err, response) => {
     if (err)
-      res.send({ message: err});
+      res.send({ message: err });
     else {
       if (response.rowCount === 1) {
-        res.send({ message: "Logged success", data: { email: response.rows[0]}});
+        if (bcrypt.compareSync(data.password, response.rows[0].password)) {
+          res.send({ message: "Logged in success", data: { ...response.rows[0] } });
+        } else {
+          res.send({ message: "Logged failed. Incorrect email or password" });
+        }
       } else {
-        res.send({ message: "Logged failed. Incorrect email"});
+        res.send({ message: "Logged failed. Incorrect email or password" });
       }
     }
   });
@@ -100,7 +104,7 @@ export const postSignup = (req: Request, res: Response): void => {
         if (e) {
           throw e;
         } else {
-          res.send({ msg: r});
+          res.send({ msg: r });
         }
       });
     }
