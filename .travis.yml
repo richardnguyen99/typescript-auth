@@ -4,10 +4,15 @@ node_js:
     - 12
     - 14
 
+services:
+    - postgresql
+
 cache:
     directories:
         - node_modules
 
+before_scripts:
+    - psql -c 'create database travis_ci_test;' -U postgres
 
 install: yarn install --frozen-lockfile
 
