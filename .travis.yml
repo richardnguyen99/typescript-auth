@@ -10,7 +10,6 @@ cache:
   - node_modules
 before_scripts:
 - psql -c 'create database travis_ci_test;' -U postgres
-- psql -c "create user riki208 with password 'travis-ci';" -U postgres
 - psql -d travis_ci_test -f ./src/sql/create_user_table.sql -U riki208
 install: yarn install --frozen-lockfile
 script:

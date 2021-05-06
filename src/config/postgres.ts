@@ -7,9 +7,9 @@ export const pool = typeof process.env.DATABASE_URL !== "undefined"
   ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
   : (typeof process.env.TRAVIS !== "undefined"
     ? new Pool({
-      user: "riki208",
+      user: "postgres",
       database: "travis_ci_test",
-      password: "travis-ci",
+      password: "postgres",
       port: 5432,
       max: 10,
     })
