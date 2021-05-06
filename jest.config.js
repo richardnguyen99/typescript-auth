@@ -11,6 +11,7 @@ module.exports = {
   testMatch: [
     "**/__test__/*.(ts|js)"
   ],
+  setupFiles: ["<rootDir>/scripts/setEnvVars.js"],
   preset: 'ts-jest',
   testEnvironment: 'node',
 };

@@ -15,7 +15,10 @@ import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user";
 import config from "./config";
 
-dotenv.config();
+dotenv.config({
+  path: typeof process.env.NODE_ENV !== "undefined" ? ".env.test" : ".env",
+});
+console.log(process.env);
 
 // Create app server with Express
 const app: Express = express();

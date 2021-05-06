@@ -13,18 +13,19 @@ import app from "../app";
 describe("Testing user routes and APIs ...", () => {
   beforeAll(() => {
     console.log("LOADING CONFIGURATION & VARIABLES ...");
-    dotenv.parse("../../env.test");
   });
 
   afterAll(() => {
-    console.log("DELETING TEST DATABASE ...");
-    const DeleteRowsQuery = "DELETE FROM users";
+    console.log("DELETING ROWS AFTER TESTING ...");
 
-    pool.query(DeleteRowsQuery, (err, res) => {
-      if (err)
-        throw err;
+    const DeleteRowsQuery = "DELETE FROM users;";
+
+    pool.query(DeleteRowsQuery, (error, response) => {
+      if (error)
+        throw error;
     });
   });
+
 
   it("Testing with signup", (done) => {
     request(app).post("/signup").send({ data: { username: "testing", password: "testing", email: "testing@testing.com" } }).expect(200, done);
