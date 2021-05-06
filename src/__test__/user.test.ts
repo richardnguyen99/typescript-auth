@@ -12,10 +12,12 @@ import app from "../app";
 
 describe("Testing user routes and APIs ...", () => {
   beforeAll(() => {
+    console.log("LOADING CONFIGURATION & VARIABLES ...");
     dotenv.parse("../../env.test");
   });
 
   afterAll(() => {
+    console.log("DELETING TEST DATABASE ...");
     const DeleteRowsQuery = "DELETE FROM users";
 
     pool.query(DeleteRowsQuery, (err, res) => {
