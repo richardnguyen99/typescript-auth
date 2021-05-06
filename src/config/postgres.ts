@@ -5,7 +5,15 @@ import { Pool, Client } from "pg";
 
 export const pool = typeof process.env.DATABASE_URL !== "undefined"
   ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
-  : new Pool();
+  : (typeof process.env.TRAVIS !== "undefined"
+    ? new Pool({
+      user: "riki208",
+      database: "travis_ci_test",
+      password: "travis-ci",
+      port: 5432,
+      max: 10,
+    })
+    : new Pool());
 
 export const client = typeof process.env.DATABASE_URL !== "undefined"
   ? new Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } })
