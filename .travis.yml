@@ -14,7 +14,6 @@ cache:
 before_scripts:
     - psql -c 'create database travis_ci_test;' -U postgres
     - psql -d travis_ci_test -f ./src/sql/create_user_table.sql -U postgres
-    - psql -c 'select * from users;' -U postgres
 
 install: yarn install --frozen-lockfile
 
