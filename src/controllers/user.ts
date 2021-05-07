@@ -16,7 +16,7 @@ import config from "../config";
  * @route GET /login
  */
 export const getSignin = (req: Request, res: Response): void => {
-  res.render("signin", {
+  res.status(200).render("signin", {
     title: "Sign in",
     pageName: "signin",
   });
@@ -28,7 +28,7 @@ export const getSignin = (req: Request, res: Response): void => {
  * @route GET /signup
  */
 export const getSignup = (req: Request, res: Response): void => {
-  res.render("signup", {
+  res.status(200).render("signup", {
     title: "Sign up",
     pageName: "signup",
   });
@@ -47,16 +47,16 @@ export const postSignin = (req: Request, res: Response): void => {
 
   postgres.pool.query(query, [data.email], (err, response) => {
     if (err)
-      res.send({ message: err });
+      res.status(401).send({ message: err });
     else {
       if (response.rowCount === 1) {
         if (bcrypt.compareSync(data.password, response.rows[0].password)) {
-          res.send({ message: "Logged in success", data: { ...response.rows[0] } });
+          res.status(200).send({ message: "Logged in success", data: { ...response.rows[0] } });
         } else {
-          res.send({ message: "Logged failed. Incorrect email or password" });
+          res.status(401).send({ message: "Logged failed. Incorrect email or password" });
         }
       } else {
-        res.send({ message: "Logged failed. Incorrect email or password" });
+        res.status(401).send({ message: "Logged failed. Incorrect email or password" });
       }
     }
   });
@@ -89,7 +89,7 @@ export const postSignup = (req: Request, res: Response): void => {
     }
 
     if (response.rowCount > 0) {
-      res.send({ msg: "Username or email is already registered" });
+      res.status(409).send({ msg: "Username or email is already registered" });
     } else {
       const hashedPassword = bcrypt.hashSync(data.password, bcrypt.genSaltSync(12));
 
@@ -100,13 +100,9 @@ export const postSignup = (req: Request, res: Response): void => {
         new Date(Date.now()).toLocaleString(),
         new Date(Date.now()).toLocaleString(),
         new Date(Date.now()).toLocaleString()
-      ], (e, r) => {
-        if (e) {
-          throw e;
-        } else {
-          res.send({ msg: r });
-        }
-      });
+      ]);
+
+      res.status(201).send({ msg: "Sign up successfully"});
     }
   });
 };

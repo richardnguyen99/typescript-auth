@@ -28,6 +28,6 @@ describe("Testing user routes and APIs ...", () => {
 
 
   it("Testing with signup", (done) => {
-    request(app).post("/signup").send({ data: { username: "testing", password: "testing", email: "testing@testing.com" } }).expect(200, done);
+    request(app).post("/signup").send({ data: { username: "testing", password: "testing", email: "testing@testing.com" } }).expect(201, done);
   });
 });

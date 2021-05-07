@@ -5,7 +5,6 @@
  */
 import errorhandler from "errorhandler";
 
-import {pool, CreateUserTableQuery } from "./config/postgres";
 import app from "./app";
 
 if (process.env.NODE_ENV === "development") {

@@ -11,7 +11,7 @@ import { Request, Response } from "express";
  * @route GET /
  */
 export const index = (req: Request, res: Response): void => {
-  res.render("home", {
+  res.status(200).render("home", {
     pageName: "home",
     title: "Home page",
   });
@@ -23,7 +23,7 @@ export const index = (req: Request, res: Response): void => {
  * @route GET /about
  */
 export const about = (req: Request, res: Response): void => {
-  res.render("about", {
+  res.status(200).render("about", {
     pageName: "about",
     title: "About page",
   });
