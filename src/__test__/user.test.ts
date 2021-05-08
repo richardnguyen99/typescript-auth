@@ -5,7 +5,6 @@
  * @author Richard Nguyen <richard.ng0616@gmail.com>
  */
 import request from "supertest";
-import dotenv from "dotenv";
 
 import { pool } from "../config/postgres";
 import app from "../app";

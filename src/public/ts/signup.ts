@@ -4,7 +4,22 @@ const emailInput: HTMLInputElement | null = document.querySelector("#email");
 const passwordInput: HTMLInputElement | null = document.querySelector("#password");
 
 const signup = (): void => {
+  const parent = signupButton?.parentElement;
+  const loadingWrapper = document.createElement("div");
+  loadingWrapper.className = "spinner-border spinner-border-sm text-primary ml-2 mt-2";
+  loadingWrapper.setAttribute("role", "loading");
+  const loadingSpinner = document.createElement("span");
+  loadingSpinner.className = "sr-only";
+  loadingSpinner.innerHTML = "Loading...";
+  loadingWrapper.appendChild(loadingSpinner);
+  parent?.appendChild(loadingWrapper);
+
   const xhttp = new XMLHttpRequest();
+
+  // Cleaning up loading animation
+  xhttp.onloadend = function () {
+    parent?.removeChild(loadingWrapper);
+  };
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -27,3 +42,9 @@ const signup = (): void => {
 
 if (signupButton)
   signupButton.onclick = signup;
+
+document.addEventListener("keypress", function (e) {
+  if (e.key === "enter") {
+    signin();
+  }
+});
