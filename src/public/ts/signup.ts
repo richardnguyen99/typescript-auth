@@ -12,13 +12,18 @@ const signup = (): void => {
   loadingSpinner.className = "sr-only";
   loadingSpinner.innerHTML = "Loading...";
   loadingWrapper.appendChild(loadingSpinner);
-  parent?.appendChild(loadingWrapper);
+
+  // prevent adding too many loading when submitting too fast
+  if (parent?.childNodes.length === 1) {
+    parent?.appendChild(loadingWrapper);
+  }
 
   const xhttp = new XMLHttpRequest();
 
   // Cleaning up loading animation
   xhttp.onloadend = function () {
-    parent?.removeChild(loadingWrapper);
+    if (parent?.childNodes.length === 2)
+      parent?.removeChild(loadingWrapper);
   };
 
   xhttp.onreadystatechange = function () {
@@ -44,7 +49,7 @@ if (signupButton)
   signupButton.onclick = signup;
 
 document.addEventListener("keypress", function (e) {
-  if (e.key === "enter") {
-    signin();
+  if (e.key === "Enter") {
+    signup();
   }
 });
