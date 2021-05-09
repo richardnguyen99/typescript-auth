@@ -26,10 +26,37 @@ const signup = (): void => {
       parent?.removeChild(loadingWrapper);
   };
 
+  xhttp.onloadstart = function () {
+    document.querySelectorAll(".invalid-feedback").forEach(el => el.remove());
+    document.querySelector(".alert")?.remove();
+  };
+
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const response = xhttp.response;
-      console.log(response);
+    }
+
+    if (this.readyState == 4 && this.status == 400) {
+      const response = xhttp.response;
+
+      const dangerAlert = document.createElement("div");
+      dangerAlert.className = "alert alert-danger mt-2";
+      dangerAlert.setAttribute("role", "alert");
+      dangerAlert.innerHTML = response.msg;
+      document.querySelector(".form-center")?.appendChild(dangerAlert);
+
+      Object.keys(response.errors).forEach(error => {
+        const invalidFeedbackElement = document.createElement("div");
+        invalidFeedbackElement.className = "d-block invalid-feedback";
+        invalidFeedbackElement.id = error;
+        invalidFeedbackElement.innerHTML = response.errors[error];
+        const parentNode = document.querySelector(`#${error}`)?.parentElement;
+
+
+        if (!parentNode?.querySelector(`div#${error}`)) {
+          document.querySelector(`#${error}`)?.parentNode?.appendChild(invalidFeedbackElement);
+        }
+      });
     }
   };
 

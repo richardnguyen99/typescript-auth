@@ -5,7 +5,7 @@
  */
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import { body, check, validationResult } from "express-validator";
+import { body, validationResult } from "express-validator";
 
 import config from "../config";
 
@@ -71,6 +71,7 @@ export const postSignup = async (req: Request, res: Response): Promise<void> => 
   const data = req.body;
   const postgres = config.postgres;
 
+  await body("username", "Username cannot be empty").isLength({ min: 1 }).run(req);
   await body("email", "Email is invalid").isEmail().run(req);
   await body("password", "Password is invalid")
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*)(+=._-])/, "i").run(req);
@@ -78,12 +79,15 @@ export const postSignup = async (req: Request, res: Response): Promise<void> => 
   const result = validationResult(req);
 
   if (!result.isEmpty()) {
-    res.status(400).send({ msg: "Some fields are invalid. Please double check", });
-  }
+    const errors: Record<string, string> = {};
+    result.array().forEach(error => {
+      errors[error.param] = error.msg;
+    });
 
-  console.log(result.array());
-  const checkUserExistingQuery = "SELECT * FROM users WHERE email = $1 or username = $2";
-  const createUserQuery = `
+    res.status(400).send({ msg: "Some fields are invalid. Please check the above errors!", errors });
+  } else {
+    const checkUserExistingQuery = "SELECT * FROM users WHERE email = $1 or username = $2";
+    const createUserQuery = `
     INSERT INTO users(
       username,
       email,
@@ -94,28 +98,30 @@ export const postSignup = async (req: Request, res: Response): Promise<void> => 
     ) VALUES ( $1, $2, $3, $4, $5, $6)
   `;
 
-  postgres.pool.query(checkUserExistingQuery, [data.email, data.username], (error, response) => {
-    if (error) {
-      throw error;
-    }
+    postgres.pool.query(checkUserExistingQuery, [data.email, data.username], (error, response) => {
+      if (error) {
+        throw error;
+      }
 
-    if (response.rowCount > 0) {
-      res.status(409).send({ msg: "Username or email is already registered" });
-    } else {
-      const hashedPassword = bcrypt.hashSync(data.password, bcrypt.genSaltSync(12));
+      if (response.rowCount > 0) {
 
-      postgres.pool.query(createUserQuery, [
-        data.username,
-        data.email,
-        hashedPassword,
-        new Date(Date.now()).toLocaleString(),
-        new Date(Date.now()).toLocaleString(),
-        new Date(Date.now()).toLocaleString()
-      ]);
+        res.status(409).send({ msg: "Username or email is already registered", });
+      } else {
+        const hashedPassword = bcrypt.hashSync(data.password, bcrypt.genSaltSync(12));
 
-      res.status(201).send({ msg: "Sign up successfully" });
-    }
-  });
+        postgres.pool.query(createUserQuery, [
+          data.username,
+          data.email,
+          hashedPassword,
+          new Date(Date.now()).toLocaleString(),
+          new Date(Date.now()).toLocaleString(),
+          new Date(Date.now()).toLocaleString()
+        ]);
+
+        res.status(201).send({ msg: "Sign up successfully" });
+      }
+    });
+  }
 };
 
 /**
@@ -134,6 +140,5 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
       throw err;
     }
 
-    console.log(response);
   });
 };
