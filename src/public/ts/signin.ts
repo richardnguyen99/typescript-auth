@@ -31,7 +31,6 @@ function signin(): void {
       if (this.readyState == 4 && this.status == 200) {
         const response = xhttp.response;
 
-        console.log(response);
       }
     };
 
@@ -39,10 +38,8 @@ function signin(): void {
     xhttp.open("POST", "/signin");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify({
-      data: {
-        email: emailInput?.value,
-        password: passwordInput?.value
-      }
+      email: emailInput?.value,
+      password: passwordInput?.value
     }));
   }
 }

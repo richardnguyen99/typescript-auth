@@ -26,7 +26,11 @@ describe("Testing user routes and APIs ...", () => {
   });
 
 
-  it("Testing with signup", (done) => {
-    request(app).post("/signup").send({ data: { username: "testing", password: "testing", email: "testing@testing.com" } }).expect(201, done);
+  it("SIGNUP: invalid password", (done) => {
+    request(app).post("/signup").send({ data: { username: "testing", password: "testing", email: "testing@testing.com" } }).expect(400, done);
+  });
+
+  it("SIGNUP: invalid email", (done) => {
+    request(app).post("/signup").send({ data: { username: "testing", password: "Testing@123", email: "testing@testing" } }).expect(400, done);
   });
 });

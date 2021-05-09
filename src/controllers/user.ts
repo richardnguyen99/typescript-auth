@@ -5,10 +5,9 @@
  */
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
+import { body, check, validationResult } from "express-validator";
 
 import config from "../config";
-
-
 
 /**
  * Login page
@@ -39,9 +38,10 @@ export const getSignup = (req: Request, res: Response): void => {
  *
  * @route POST /signin
  */
-export const postSignin = (req: Request, res: Response): void => {
-  const data = req.body.data;
+export const postSignin = async (req: Request, res: Response): Promise<void> => {
+  const data = req.body;
   const postgres = config.postgres;
+
 
   const query = "SELECT * FROM users WHERE email = $1";
 
@@ -67,10 +67,21 @@ export const postSignin = (req: Request, res: Response): void => {
  *
  * @route POST /signup
  */
-export const postSignup = (req: Request, res: Response): void => {
-  const data = req.body.data;
+export const postSignup = async (req: Request, res: Response): Promise<void> => {
+  const data = req.body;
   const postgres = config.postgres;
 
+  await body("email", "Email is invalid").isEmail().run(req);
+  await body("password", "Password is invalid")
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*)(+=._-])/, "i").run(req);
+
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    res.status(400).send({ msg: "Some fields are invalid. Please double check", });
+  }
+
+  console.log(result.array());
   const checkUserExistingQuery = "SELECT * FROM users WHERE email = $1 or username = $2";
   const createUserQuery = `
     INSERT INTO users(
@@ -102,7 +113,7 @@ export const postSignup = (req: Request, res: Response): void => {
         new Date(Date.now()).toLocaleString()
       ]);
 
-      res.status(201).send({ msg: "Sign up successfully"});
+      res.status(201).send({ msg: "Sign up successfully" });
     }
   });
 };

@@ -37,11 +37,9 @@ const signup = (): void => {
   xhttp.open("POST", "/signup");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({
-    data: {
-      username: usernameInput?.value,
-      email: emailInput?.value,
-      password: passwordInput?.value
-    }
+    username: usernameInput?.value,
+    email: emailInput?.value,
+    password: passwordInput?.value
   }));
 };
 

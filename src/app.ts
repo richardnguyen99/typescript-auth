@@ -10,6 +10,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import compression from "compression";
 import dotenv from "dotenv";
+import expressValidator from "express-validator";
 
 import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user";
