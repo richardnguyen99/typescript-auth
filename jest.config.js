@@ -12,6 +12,6 @@ module.exports = {
     "**/__test__/*.(ts|js)"
   ],
   setupFiles: ["<rootDir>/scripts/setEnvVars.js"],
-  preset: 'ts-jest',
-  testEnvironment: 'node',
+  preset: "ts-jest",
+  testEnvironment: "node",
 };

@@ -3,7 +3,7 @@ const signinButton: HTMLButtonElement | null = document.querySelector("#signinBu
 const emailInput: HTMLInputElement | null = document.querySelector("#email");
 const passwordInput: HTMLInputElement | null = document.querySelector("#password");
 
-function signin(): void {
+const signin = (): void => {
   if (signinButton) {
     const parent = signinButton.parentElement;
     const loadingWrapper = document.createElement("div");
@@ -23,14 +23,38 @@ function signin(): void {
 
     // Cleaning up loading animation
     xhttp.onloadend = function () {
-      if (parent?.childNodes.length === 2)
+      if (parent?.childNodes.length === 3)
         parent?.removeChild(loadingWrapper);
+    };
+
+    xhttp.onloadstart = function () {
+      document.querySelectorAll(".invalid-feedback").forEach(el => el.remove());
+      document.querySelector(".alert")?.remove();
     };
 
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         const response = xhttp.response;
 
+        const successAlert = document.createElement("div");
+        successAlert.className = "alert alert-success mt-3";
+        successAlert.setAttribute("role", "alert");
+        successAlert.innerHTML = "Redirect to home page in 3";
+        document.querySelector(".form-center")?.appendChild(successAlert);
+
+        let timeLeft = 2;
+        const redirecTimer = setInterval(function () {
+          if (timeLeft <= 0) {
+            clearInterval(redirecTimer);
+            successAlert.innerHTML = "Redirecting ...";
+            setTimeout(() => {
+              window.location.pathname = "/";
+            });
+          } else {
+            successAlert.innerHTML = "Redirect to home page in " + timeLeft;
+          }
+          timeLeft -= 1;
+        }, 1000);
       }
     };
 
@@ -42,7 +66,7 @@ function signin(): void {
       password: passwordInput?.value
     }));
   }
-}
+};
 
 if (signinButton)
   signinButton.onclick = signin;

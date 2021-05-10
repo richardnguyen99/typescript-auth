@@ -6,11 +6,12 @@
  */
 import path from "path";
 import express, { Express } from "express";
+import session from "express-session";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import compression from "compression";
 import dotenv from "dotenv";
-import expressValidator from "express-validator";
+import passport from "passport";
 
 import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user";
@@ -29,6 +30,13 @@ app.set("env", process.env.NODE_ENV);
 app.set("views", path.join(__dirname, "../dist", "public", "views"));
 app.set("view engine", "ejs");
 app.use(compression());
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: process.env.SESSION_SECRET || "typescript-auth-secret-key-test",
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(
   morgan(process.env.NODE_ENV === "production" ? "combined" : "dev", {
     stream: new config.winston.LoggerStream(),
@@ -36,6 +44,10 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 app.use(express.static(path.join(__dirname, "public")));
 
 /** General pages */

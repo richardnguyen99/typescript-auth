@@ -3,11 +3,13 @@
  *
  * @author Richard Nguyen <richard.ng0616@gmail.com>
  */
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { body, validationResult } from "express-validator";
 
 import config from "../config";
+import "../config/passport";
+import passport from "passport";
 
 /**
  * Login page
@@ -15,6 +17,10 @@ import config from "../config";
  * @route GET /login
  */
 export const getSignin = (req: Request, res: Response): void => {
+  if (req.user) {
+    return res.status(301).redirect("/");
+  }
+
   res.status(200).render("signin", {
     title: "Sign in",
     pageName: "signin",
@@ -38,28 +44,24 @@ export const getSignup = (req: Request, res: Response): void => {
  *
  * @route POST /signin
  */
-export const postSignin = async (req: Request, res: Response): Promise<void> => {
+export const postSignin = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const data = req.body;
-  const postgres = config.postgres;
 
+  passport.authenticate("local", (error, user, info) => {
+    if (error)
+      return res.status(401).send({ message: error });
 
-  const query = "SELECT * FROM users WHERE email = $1";
-
-  postgres.pool.query(query, [data.email], (err, response) => {
-    if (err)
-      res.status(401).send({ message: err });
-    else {
-      if (response.rowCount === 1) {
-        if (bcrypt.compareSync(data.password, response.rows[0].password)) {
-          res.status(200).send({ message: "Logged in success", data: { ...response.rows[0] } });
-        } else {
-          res.status(401).send({ message: "Logged failed. Incorrect email or password" });
-        }
-      } else {
-        res.status(401).send({ message: "Logged failed. Incorrect email or password" });
-      }
+    if (!user) {
+      return res.status(401).send({ message: info.message });
     }
-  });
+
+    return req.logIn(user, (err) => {
+      if (err)
+        return res.status(500).send({ message: "Something happens in server" });
+
+      return res.status(200).send({ message: info.message, data: req.user });
+    });
+  })(req, res, next);
 };
 
 /**
