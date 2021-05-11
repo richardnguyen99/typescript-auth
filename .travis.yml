@@ -16,7 +16,7 @@ install:
 - yarn install --frozen-lockfile
 script:
 - yarn run build
-- yarn run test --maxWorkers=2
+- yarn run test --runInBand
 env:
   global:
     secure: Zqp0qcoUfJ6MWlImuTXm2V5kKOaO5ZyJSXRmef3MvS3EaaW2fQJULytbE/piQ8W+6nz1+sQBYNlSyXxjGHUdyy66Ho2BAmpMpZjHx5nq6liB0WRvaPcfHCtpY3srJxcyaTUCY6Jrv5ItCay1l5XmrFRT0xMpEWZ9o50Y/pshwJn7A/JfoocENOt7C/hmWQJRiyuO8BdaVNoZm9fTlNTXPpHRoYcdaxJ2SirxopZZ9YM5RhhnWjYOR/NGlypHisMjye1vflM6lANnquw0izTkkEtJpWTELOn2wgCCi/yba13SX4BOzN04VBNUaC4rGNerxEQ4xajYxQQtIflpYHNIUQ1kh3DHDjKhz2QsNDugFaKP0s83l+xCzPqdLeO7wU/Q4GZrFfgRcwWZZTPWdiU6IoNVvJckam0pAjxn8em7Y1bLCh4dNd0FFdLZLGDWgEDWbOQAj+b21T31hAcqWDm6ii3NVZyWcJUIhj40uInK5iL0c/io3SITPZa+1zMKqHKA78ZjPA+05jmw8Mf8EhUy1e7gd9j7Hp4we6uosKqpE3uXFjDNb47r8GsveQw3jQpOQjzhcwydPbeE1NcWGer6TuvBYW0jlL+sG9Oyp5nQ8pabQ+n9dz1nxVDy+GDIIDXmJMOPIt2K5fRsN4Ma+FVixscDq8heh9+zvjzgaiqWimQ=
