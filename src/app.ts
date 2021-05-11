@@ -22,6 +22,8 @@ dotenv.config({
   path: typeof process.env.TESTING !== "undefined" ? ".env.test" : ".env",
 });
 
+console.log(process.env);
+
 // Create app server with Express
 const app: Express = express();
 
