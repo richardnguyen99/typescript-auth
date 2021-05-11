@@ -1,7 +1,9 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const {
+  WebpackManifestPlugin
+} = require("webpack-manifest-plugin");
 
 require("dotenv").config();
 
@@ -17,7 +19,7 @@ module.exports = {
     main: path.resolve(__dirname, "src", "public", "scss", "main.scss")
   },
   output: {
-    filename: isProd ? "js/[name].[fullhash].js" : "js/[name].js" ,
+    filename: isProd ? "js/[name].[fullhash].js" : "js/[name].js",
     chunkFilename: "js/[name].chunk.js",
     path: path.resolve(__dirname, "dist", "public"),
     publicPath: "/",
@@ -29,8 +31,7 @@ module.exports = {
     usedExports: true
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|ts)$/,
         exclude: /node_modules/,
         include: /src/,
@@ -67,12 +68,12 @@ module.exports = {
       template: "views/home.ejs",
       minify: {
         collapseWhitespace: true,
-        keepClosingSlash: true,
         removeComments: true,
         removeRedundantAttributes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
+        useShortDoctype: true,
+
       },
       chunks: ["index"]
     }),

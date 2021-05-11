@@ -14,7 +14,7 @@ const signup = (): void => {
   loadingWrapper.appendChild(loadingSpinner);
 
   // prevent adding too many loading when submitting too fast
-  if (parent?.childNodes.length === 1) {
+  if (parent?.childElementCount === 1) {
     parent?.appendChild(loadingWrapper);
   }
 
@@ -22,7 +22,7 @@ const signup = (): void => {
 
   // Cleaning up loading animation
   xhttp.onloadend = function () {
-    if (parent?.childNodes.length === 2)
+    if (parent?.childElementCount === 2)
       parent?.removeChild(loadingWrapper);
   };
 

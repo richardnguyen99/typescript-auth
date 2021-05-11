@@ -5,7 +5,7 @@ const passwordInput: HTMLInputElement | null = document.querySelector("#password
 
 const signin = (): void => {
   if (signinButton) {
-    const parent = signinButton.parentElement;
+    const parent = signinButton?.parentElement;
     const loadingWrapper = document.createElement("div");
     loadingWrapper.className = "spinner-border spinner-border-sm text-primary ml-2 mt-2";
     loadingWrapper.setAttribute("role", "loading");
@@ -15,7 +15,7 @@ const signin = (): void => {
     loadingWrapper.appendChild(loadingSpinner);
 
     // prevent adding too many loading when submitting too fast
-    if (parent?.childNodes.length === 2) {
+    if (parent?.childElementCount === 2) {
       parent?.appendChild(loadingWrapper);
     }
 
@@ -23,7 +23,7 @@ const signin = (): void => {
 
     // Cleaning up loading animation
     xhttp.onloadend = function () {
-      if (parent?.childNodes.length === 3)
+      if (parent?.childElementCount === 3)
         parent?.removeChild(loadingWrapper);
     };
 
