@@ -8,7 +8,7 @@ import request from "supertest";
 
 import app from "../app";
 
-jest.setTimeout(10000);
+jest.setTimeout(30000);
 
 describe("loading Express app...", () => {
   it("responds to /", (done) => {

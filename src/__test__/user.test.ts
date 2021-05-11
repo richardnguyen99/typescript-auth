@@ -9,7 +9,7 @@ import request from "supertest";
 import { pool } from "../config/postgres";
 import app from "../app";
 
-jest.setTimeout(10000);
+jest.setTimeout(30000);
 
 describe("Testing user routes and APIs ...", () => {
   beforeAll(() => {
