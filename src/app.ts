@@ -22,8 +22,6 @@ dotenv.config({
   path: typeof process.env.TESTING !== "undefined" ? ".env.test" : ".env",
 });
 
-console.log(process.env);
-
 // Create app server with Express
 const app: Express = express();
 
@@ -37,7 +35,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET || "typescript-auth-secret-key-test",
-  store: new (PgSession(session))(),
+  store: new (PgSession(session))({
+    pool: config.postgres.pool,
+    tableName: "session",
+  }),
   cookie: {
     maxAge: 30 * 24 * 60 * 60 * 1000,
   },
