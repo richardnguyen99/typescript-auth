@@ -2,21 +2,37 @@
   <div class="container">
     <!-- Brand -->
     <a class="navbar-brand" href="/">
-      <img class="navbar-brand-img" src="assets/images/brand.png" alt="Local brand">
+      <img class="navbar-brand-img" src="assets/images/brand.png"
+        alt="Local brand">
     </a>
     <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Nav items -->
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto fw-bold mb-2 mb-lg-0">
+        <% if(user) { %>
         <li class="nav-item">
-          <a class="nav-link px-0 mx-3 my-2 <%= pageName === "signin" && "active" %>" aria-current="page" href="/signin">Sign in</a>
+          <a
+            class="nav-link px-0 mx-3 my-2 font-weight-bold"><small>Hi,&nbsp;<%= user.username %></small></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-0 mx-3 my-2 <%= pageName === "signup" && "active" %>" aria-current="page" href="/signup">Sign up</a>
+          <a class="nav-link px-0 mx-3 my-2 font-weight-bold"
+            aria-current="page" href="/logout">Logout</a>
         </li>
+        <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link px-0 mx-3 my-2 <%= pageName === "signin" && "active" %>"
+            aria-current="page" href="/signin">Sign in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-0 mx-3 my-2 <%= pageName === "signup" && "active" %>"
+            aria-current="page" href="/signup">Sign up</a>
+        </li>
+        <% } %>
       </ul>
     </div>
   </div>

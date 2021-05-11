@@ -56,6 +56,15 @@ const signin = (): void => {
           timeLeft -= 1;
         }, 1000);
       }
+
+      if (this.readyState == 4 && this.status == 401) {
+        const response = xhttp.response;
+
+        const dangerAlert = document.createElement("div");
+        dangerAlert.className = "alert alert-danger mt-2";
+        dangerAlert.innerHTML = response.message;
+        document.querySelector(".form-center")?.appendChild(dangerAlert);
+      }
     };
 
     xhttp.responseType = "json";

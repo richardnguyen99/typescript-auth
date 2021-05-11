@@ -34,7 +34,19 @@ describe("Testing user routes and APIs ...", () => {
     request(app).post("/signup").send({ username: "testing", password: "Testing@123", email: "testing@testing" }).expect(400, done);
   });
 
-  it("SIGNUP: invalid email", (done) => {
+  it("SIGNUP: valid email", (done) => {
     request(app).post("/signup").send({ username: "testing", password: "Testing@123", email: "testing@testing.com" }).expect(201, done);
+  });
+
+  it("SIGNIN: invalid password", (done) => {
+    request(app).post("/signin").send({ password: "testing", email: "testing@testing.com" }).expect(401, done);
+  });
+
+  it("SIGNIN: invalid email", (done) => {
+    request(app).post("/signin").send({ password: "Testing@123", email: "testing@testing" }).expect(401, done);
+  });
+
+  it("SIGNIN: valid email", (done) => {
+    request(app).post("/signin").send({ password: "Testing@123", email: "testing@testing.com" }).expect(200, done);
   });
 });
