@@ -8,6 +8,8 @@ import request from "supertest";
 
 import app from "../app";
 
+jest.setTimeout(10000);
+
 describe("loading Express app...", () => {
   it("responds to /", (done) => {
     request(app).get("/").expect(200, done);
