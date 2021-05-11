@@ -78,6 +78,20 @@ module.exports = {
       chunks: ["index"]
     }),
     new HtmlWebpackPlugin({
+      filename: "views/user.ejs",
+      template: "views/user.ejs",
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+
+      },
+      chunks: ["index"]
+    }),
+    new HtmlWebpackPlugin({
       filename: "views/signup.ejs",
       template: "views/signup.ejs",
       minify: {

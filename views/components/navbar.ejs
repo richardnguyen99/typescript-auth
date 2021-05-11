@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Brand -->
     <a class="navbar-brand" href="/">
-      <img class="navbar-brand-img" src="assets/images/brand.png"
+      <img class="navbar-brand-img" src="/assets/images/brand.png"
         alt="Local brand">
     </a>
     <!-- Toggler -->
@@ -16,8 +16,9 @@
       <ul class="navbar-nav ml-auto fw-bold mb-2 mb-lg-0">
         <% if(user) { %>
         <li class="nav-item">
-          <a
-            class="nav-link px-0 mx-3 my-2 font-weight-bold"><small>Hi,&nbsp;<%= user.username %></small></a>
+          <a class="nav-link px-0 mx-3 my-2 font-weight-bold"
+            aria-current="page"
+            href="/user/<%= user.username %>"><small>Hi,&nbsp;<%= user.username %></small></a>
         </li>
         <li class="nav-item">
           <a class="nav-link px-0 mx-3 my-2 font-weight-bold"

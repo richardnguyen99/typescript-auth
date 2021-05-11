@@ -141,16 +141,19 @@ export const postSignup = async (req: Request, res: Response): Promise<void> => 
  *
  * @route GET /user/:username
  */
-export const getUser = async (req: Request, res: Response): Promise<void> => {
+export const getUser = (req: Request, res: Response): void => {
   const params = req.params;
   const postgres = config.postgres;
 
-  const query = "SELECT * FROM users";
-
-  postgres.pool.query(query, (err, response) => {
-    if (err) {
-      throw err;
-    }
-
-  });
+  if (req.user && req.user.username === params.username) {
+    return res.status(200).render("user", {
+      title: `${req.user.username}`,
+    });
+  } else {
+    return res.status(200).render("user", {
+      title: `${req.user.username}`,
+      isPrivate: true,
+      viewingUser: params.username
+    });
+  }
 };
