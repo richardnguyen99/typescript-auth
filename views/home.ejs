@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%- title %></title>
-    <meta name="description" content="">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="shortcut icon" type="image/png" href="/assets/favicon.ico"/>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-    <script defer src="/js/lib/font-awesome.js"></script>
-  </head>
-  <body class="h-100">
-    <%- include("./components/navbar") %>
 
-    <div class="container">
-      <h1 class="">Typescript starter pack</h1>
-      <p class="lead">A template/boilerplate for NodeJS web application powered by Typescript</p>
-      <hr>
-    </div>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%- title %></title>
+  <meta name="description" content="">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.ico" />
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+    integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+    crossorigin="anonymous"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+    integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+    crossorigin="anonymous"></script>
+  <script defer src="/js/lib/font-awesome.js"></script>
+</head>
 
-    <%- include("./components/footer") %>
-  </body>
+<body class="h-100">
+  <%- include("./components/navbar") %>
+
+  <div class="container">
+    <% if (user) { %>
+    <h1>Welcome, <%= user.username %></h1>
+    <% } else { %>
+    <h1>Typescript starter pack</h1>
+    <p class="lead">A template/boilerplate for NodeJS web application powered by
+      Typescript</p>
+    <hr>
+    <% } %>
+  </div>
+
+  <%- include("./components/footer") %>
+</body>
+
 </html>

@@ -28,6 +28,16 @@ export const getSignin = (req: Request, res: Response): void => {
 };
 
 /**
+ * Logout page
+ *
+ * @route GET /logout
+ */
+export const logout = (req: Request, res: Response): void => {
+  req.logOut();
+  res.redirect("/");
+};
+
+/**
  * Sign up page
  *
  * @route GET /signup

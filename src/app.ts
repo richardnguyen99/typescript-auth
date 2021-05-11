@@ -7,6 +7,7 @@
 import path from "path";
 import express, { Express } from "express";
 import session from "express-session";
+import PgSession from "connect-pg-simple";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import compression from "compression";
@@ -31,9 +32,13 @@ app.set("views", path.join(__dirname, "../dist", "public", "views"));
 app.set("view engine", "ejs");
 app.use(compression());
 app.use(session({
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET || "typescript-auth-secret-key-test",
+  store: new (PgSession(session))(),
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  },
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -59,6 +64,7 @@ app.get("/signin", userController.getSignin);
 app.post("/signin", userController.postSignin);
 app.get("/signup", userController.getSignup);
 app.post("/signup", userController.postSignup);
+app.get("/logout", userController.logout);
 app.get("/user/:username", userController.getUser);
 
 export default app;
