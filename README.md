@@ -11,17 +11,20 @@ An authentication server powered by Typescript and Express.
 
 This project is based on *[this template of mine](https://github.com/richardnguyen99/mvc-express-ts-starter-pack)*. It contains all the basic features and some extra stuff for specified tasks.
 
-- [ ] Sign in
-- [ ] Sign up
+- [X] Sign in
+- [X] Sign up
 - [ ] Reset password
-- [ ] Logout
-- [ ] Remember users
-- [ ] Database with PostgresQL
+- [X] Logout
+- [X] Remember users
+- [X] Database with PostgresQL
 - [ ] Admin board
+- [ ] User info table
+- [ ] Avatar upload
+- [ ] User display page
 - [ ] Update information
 - [ ] OAuth
 - [ ] API
-- [ ] Testing
+- [X] Testing
 
 # Scripts
 
