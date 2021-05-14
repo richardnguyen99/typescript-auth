@@ -148,6 +148,8 @@ export const getUser = (req: Request, res: Response): void => {
   if (req.user && req.user.username === params.username) {
     return res.status(200).render("user", {
       title: `${req.user.username}`,
+      isPrivate: false,
+      viewingUser: params.username
     });
   } else {
     return res.status(200).render("user", {
